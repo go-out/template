@@ -10,11 +10,12 @@
             "ここに紹介文を書きます",
             "長い文章にしたい場合はinfo.markdownで別ファイルを指定できます"
         ],
+        "markdown": "README.md",
         "links": [
             {
-                "text": "サンプルリンク",
-                "url": "https://example.com",
-                "target": "_blank"
+                "text": "date/",
+                "url": "date/",
+                "target": "_self"
             }
         ]
     },

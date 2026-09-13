@@ -21,13 +21,18 @@
     <script type="module">
         import {indexJSON} from "https://go-out.github.io/sdk/js/latest/date.js";
 
+        // date/ は地域ディレクトリ（例: osaka/city24/）とは別の、
+        // リポジトリ共通のイベントを管理するディレクトリ。
+        // ?map=... のときは地域ディレクトリ側のdate.jsonを覗きに行く（"../"始まり）。
+        // それ以外（?id=... または指定なし）はdate/自身の中を見る（"./"始まり）。
+        // sub-resource（cover.directory・info.markdown・links等）の解決に使う
+        // プレフィックスも、このどちらかで変わるためthisPathとして一緒に渡す。
         const params = new URLSearchParams(location.search);
-        let thisJSON, thisID, thisArea;
+        let thisJSON, thisArea, thisPath;
         if (location.search) {
             if (params.get("map")) {
-                thisJSON = "../";
-                thisID = params.get("id").replaceAll("-", "/");
-                thisJSON = `${thisID}`;
+                thisPath = "../";
+                thisJSON = "../" + params.get("map").replaceAll("-", "/");
                 if (params.get("area")) {
                     thisArea = params.get("area").replaceAll("-", '/');
                     thisJSON += `/${thisArea}`;
@@ -38,6 +43,7 @@
                     thisJSON += "/date.json";
                 };
             } else {
+                thisPath = "./";
                 thisJSON = "./";
                 if (params.get("id")) {
                     // ?id=ID&name=名前
@@ -55,9 +61,9 @@
                     };
                 };
             };
-            indexJSON(thisJSON);
+            indexJSON(thisJSON, thisPath);
         } else {
-            indexJSON("./date.json");
+            indexJSON("date.json", "./");
         };
     </script>
 </head>

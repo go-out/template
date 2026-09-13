@@ -1,5 +1,5 @@
 {
-    "url": "date/?name=sample",
+    "url": "date/",
     "lastModified": null,
     "cover": {
         "title": [
@@ -17,7 +17,7 @@
     "info": {
         "index": "Little Person by Jon Brion",
         "note": null,
-        "markdown": "./README.md",
+        "markdown": "../README.md",
         "links": [
             {
                 "text": "Little Person - YouTube",
