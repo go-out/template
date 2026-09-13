@@ -1,0 +1,55 @@
+{
+    "url": "/map/",
+    "title": [
+        "Go Out and Explore",
+        "地図テンプレート"
+    ],
+    "description": "このJSONは複製先サイトの雛形（プレースホルダー）です。実際の内容に書き換えて使ってください。",
+    "info": {
+        "note": [
+            "ここに紹介文を書きます",
+            "長い文章にしたい場合はinfo.markdownで別ファイルを指定できます"
+        ],
+        "links": [
+            {
+                "text": "サンプルリンク",
+                "url": "https://example.com",
+                "target": "_blank"
+            }
+        ]
+    },
+    "map": {
+        "center": [
+            139.7671,
+            35.6812
+        ],
+        "zoom": 10
+    },
+    "features": [
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    139.7671,
+                    35.6812
+                ]
+            },
+            "properties": {
+                "title": "サンプルスポット",
+                "description": "ここにスポットの説明を書きます",
+                "note": [
+                    "補足その1"
+                ],
+                "links": [
+                    {
+                        "text": "関連リンク",
+                        "url": "https://example.com",
+                        "target": "_blank"
+                    }
+                ],
+                "zoom": 15
+            }
+        }
+    ]
+}

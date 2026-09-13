@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="format-detection" content="telephone=no" />
+
+    <title>Go Out | 行ったことのない場所へ行く</title>
+    <meta content="知っていることの 外へ わからないところまで 出かける" name="description" />
+    <link rel="icon" href="https://go-out.github.io/sdk/assets/favicon.png" />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Zen+Maru+Gothic&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="https://go-out.github.io/sdk/assets/fonts/font-face.css" />
+
+    <link href="https://unpkg.com/maplibre-gl@6.9.0/dist/maplibre-gl.css" rel="stylesheet">
+
+    <link rel="stylesheet" href="https://go-out.github.io/sdk/css/latest/style.css" />
+    <link rel="stylesheet" href="https://go-out.github.io/sdk/css/latest/date-event.css" />
+    <link rel="stylesheet" href="https://go-out.github.io/sdk/css/latest/map-cover.css" />
+    <link rel="stylesheet" href="https://go-out.github.io/sdk/css/latest/map-main.css" />
+    <link rel="stylesheet" href="https://go-out.github.io/sdk/css/latest/map-spot.css" />
+
+    <script type="module">
+        import {collectionJSON} from "https://go-out.github.io/sdk/js/latest/map.js";
+        // ?id=ID&area=エリア&name=名前
+        const params = new URLSearchParams(location.search);
+        if (location.search) {
+            let thisJSON = "", thisID, thisArea;
+            if (params.get("id")) {
+                thisID = params.get("id").replaceAll("-", "/");
+                thisJSON = `./${thisID}`;
+            } else {
+                thisJSON = ".";
+            };
+            if (params.get("area")) {
+                thisArea = params.get("area").replaceAll("-", '/');
+                thisJSON += `/${thisArea}`;
+            };
+            if (params.get("name")) {
+                thisJSON += `/${params.get("name")}.json`;
+            } else {
+                thisJSON += "/index.json";
+            };
+            collectionJSON(thisJSON);
+        } else if (!location.search) {
+            collectionJSON("index.json");
+        };
+
+        // ESモジュールはDOM解析完了後に実行されるため、#listは既に存在している
+        const index = document.querySelector("#list");
+        index.addEventListener("toggle", () => {
+            if (index.open) {
+                index.scrollIntoView({
+                    behavior: "smooth"
+                }, false);
+            } else {
+                document.querySelector("#mapbox").scrollIntoView({
+                    top: 0,
+                    behavior: "smooth"
+                }, false);
+            };
+        }, false);
+    </script>
+</head>
+
+<body>
+    <header>
+        <h1 id="title">
+            <strong class="goout">Go Out</strong>
+            <u>行ったことのない場所へ行く</u>
+        </h1>
+        <ul id="img" hidden></ul>
+    </header>
+
+    <dialog id="spot">
+        <div>
+            <button type="button" class="close">(閉じる)</button>
+            <h2>
+                <strong>Go Out</strong>
+                <small id="year">YYYY</small>
+            </h2>
+            <h3>
+                <strong id="month">MM</strong>
+                <strong id="date">DD</strong>
+            </h3>
+            <canvas id="video" hidden></canvas>
+            <nav id="vewAll"></nav>
+        </div>
+        <h4 id="thisDescription"></h4>
+        <article id="info">
+            <section hidden></section>
+            <aside hidden>
+                <u>関連ページ Related Pages</u>
+            </aside>
+        </article>
+        <select name="log" id="log" hidden></select>
+    </dialog>
+
+    <dialog id="thisEvent">
+        <button type="button" class="close">( 閉じる )</button>
+        <article id="thisInfo"></article>
+        <aside id="thisLink" hidden></aside>
+    </dialog>
+
+    <main id="collection">
+        <section id="mapbox">
+            <div id="map"></div>
+        </section>
+        <article>
+            <h3 id="description"><b class="relax">Go Out</b></h3>
+            <div id="notes"></div>
+            <aside id="links" hidden></aside>
+        </article>
+    </main>
+
+    <footer>
+        <article id="events" hidden>
+            <fieldset>
+                <legend>四季の出来事</legend>
+                <input type="radio" name="siki" id="spring">
+                <label for="spring">
+                    <strong>春</strong>
+                    <small>March</small>
+                    <small>April</small>
+                    <small>May</small>
+                </label>
+                <input type="radio" name="siki" id="summer">
+                <label for="summer">
+                    <strong>夏</strong>
+                    <small>June</small>
+                    <small>July</small>
+                    <small>August</small>
+                </label>
+                <input type="radio" name="siki" id="autumne">
+                <label for="autumne">
+                    <strong>秋</strong>
+                    <small>September</small>
+                    <small>October</small>
+                    <small>November</small>
+                </label>
+                <input type="radio" name="siki" id="winter">
+                <label for="winter">
+                    <strong>冬</strong>
+                    <small>December</small>
+                    <small>January</small>
+                    <small>February</small>
+                </label>
+                <input type="radio" name="siki" id="all">
+                <label for="all">
+                    <strong>毎月</strong>
+                    <small>every month</small>
+                </label>
+            </fieldset>
+        </article>
+
+        <details id="list" hidden>
+            <summary>コレクションを表示 | View the Collection</summary>
+            <ul></ul>
+        </details>
+
+        <div id="weather" hidden></div>
+    </footer>
+</body>
+
+</html>

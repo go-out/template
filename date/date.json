@@ -1,0 +1,57 @@
+{
+    "url": "date/?name=sample",
+    "lastModified": null,
+    "cover": {
+        "title": [
+            "Go Out and Play",
+            "Let's Have Some Fun"
+        ],
+        "description": "Life is precious, every minute And more precious with you in it",
+        "note": [
+            "Somewhere, maybe someday",
+            "Maybe somewhere far away"
+        ],
+        "directory": "https://upload.wikimedia.org/wikipedia/",
+        "url": "it/d/d5/Synecdoche%2C_New_York.png"
+    },
+    "info": {
+        "index": "Little Person by Jon Brion",
+        "note": null,
+        "markdown": "./README.md",
+        "links": [
+            {
+                "text": "Little Person - YouTube",
+                "url": "https://www.youtube.com/watch?v=FXL8sbalC8I",
+                "target": "_blank"
+            }
+        ]
+    },
+    "events": [
+        {
+            "date": {
+                "month": 10,
+                "date": [
+                    24
+                ]
+            },
+            "title": [
+                "Little Person",
+                "by Jon Brion"
+            ],
+            "description": "映画「脳内ニューヨーク」のエンディング曲",
+            "note": [
+                "Synecdoche, New York (2008)",
+                "Director by Charlie Kaufman"
+            ],
+            "cover": {
+                "directory": null,
+                "url": null
+            },
+            "info": {
+                "note": null,
+                "markdown": null,
+                "links": null
+            }
+        }
+    ]
+}
