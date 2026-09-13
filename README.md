@@ -41,7 +41,7 @@ template/
 
 ## サイト作成時のチェックリスト
 
-- [ ] `index.html`・`date.html`の`<title>`・`<meta name="description">`を実際の内容に合わせる（JS側で上書きされるが、初期表示・SNS等での見え方に影響する）
+- [ ] `index.html`・`date/index.html`の`<title>`・`<meta name="description">`を実際の内容に合わせる（JS側で上書きされるが、初期表示・SNS等での見え方に影響する）
 - [ ] `index.json`のタイトル・説明・地図の初期位置（`map.center`）を書き換える
 - [ ] `index.json`の`features`（サンプルスポット）を、実際のスポットに置き換える
 - [ ] `date.json`のカバー・イベントを、実際の年中行事・イベントに置き換える
