@@ -25,13 +25,17 @@
         // リポジトリ共通のイベントを管理するディレクトリ。
         // ?map=... のときは地域ディレクトリ側のdate.jsonを覗きに行く（"../"始まり）。
         // それ以外（?id=... または指定なし）はdate/自身の中を見る（"./"始まり）。
-        // sub-resource（cover.directory・info.markdown・links等）の解決に使う
-        // プレフィックスも、このどちらかで変わるためthisPathとして一緒に渡す。
+        //
+        // 一方、info.markdown・cover.directory等の相対パスは、
+        // リポジトリルート基準で統一して書く運用にしたため（region側の
+        // index.jsonと同じ流儀）、date/は常にルートの1階層下なので、
+        // ?map/?idどちらの場合もプレフィックスは常に"../"で良い
+        // （変わるのは取得先JSONのURLだけ）。
         const params = new URLSearchParams(location.search);
-        let thisJSON, thisArea, thisPath;
+        let thisJSON, thisArea;
+        const thisPath = "../";
         if (location.search) {
             if (params.get("map")) {
-                thisPath = "../";
                 thisJSON = "../" + params.get("map").replaceAll("-", "/");
                 if (params.get("area")) {
                     thisArea = params.get("area").replaceAll("-", '/');
@@ -43,7 +47,6 @@
                     thisJSON += "/date.json";
                 };
             } else {
-                thisPath = "./";
                 thisJSON = "./";
                 if (params.get("id")) {
                     // ?id=ID&name=名前
@@ -63,7 +66,7 @@
             };
             indexJSON(thisJSON, thisPath);
         } else {
-            indexJSON("date.json", "./");
+            indexJSON("./date.json", thisPath);
         };
     </script>
 </head>
